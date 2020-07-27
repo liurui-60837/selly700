@@ -6,6 +6,7 @@ import com.mooc.sell.enums.ResultEnum;
 import com.mooc.sell.exception.SellException;
 import com.mooc.sell.service.OrderService;
 import lombok.extern.slf4j.Slf4j;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -47,19 +48,34 @@ public class SellOrderController {
     }
     @GetMapping("/cancel")
     public ModelAndView cancel(@RequestParam("orderId") String orderId,Map<String,Object> map){
-       // OrderDto orderDto = orderService.findOne(orderId);
+        OrderDto orderDto = new OrderDto();
         try {
-           OrderDto orderDto = orderService.findOne(orderId);
+            orderDto = orderService.findOne(orderId);
+            orderService.cancel(orderDto);
         } catch (SellException e){
             System.out.println("卖家订单查询不到");
             map.put("msg", e.getMessage());
             map.put("url","/sell/sell/order/list");
             return new ModelAndView("common/error",map);
         }
-        //orderService.cancel(orderDto);
         map.put("msg",ResultEnum.SUCCESS_FUL);
-        map.put("url","sell/sell/order/list");
+        map.put("url","/sell/sell/order/list");
         return new ModelAndView("common/success");
+    }
+
+    @GetMapping("/detail")
+    public ModelAndView detail(@RequestParam("orderId") String orderId,Map<String,Object> map){
+        OrderDto orderDto = new OrderDto();
+        try {
+            orderDto =  orderService.findOne(orderId);
+        } catch (SellException e){
+            System.out.println("卖家订单查询不到");
+            map.put("msg", e.getMessage());
+            map.put("url","/sell/sell/order/list");
+            return new ModelAndView("common/error",map);
+        }
+            map.put("orderDTO",orderDto);
+            return  new ModelAndView("order/detail",map);
     }
 
 }

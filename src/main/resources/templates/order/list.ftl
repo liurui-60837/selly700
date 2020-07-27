@@ -51,8 +51,12 @@
                     <td>${OrderDto.getOrderStatusEnum().message}</td>
                     <td>${OrderDto.getPayStatusEnum().message}</td>
                     <td>${OrderDto.createTime}</td>
-                    <td>详情</td>
-                    <td>取消</td>
+                    <td><a href="/sell/sell/order/detail?orderId=${OrderDto.orderId}" >详情</a></td>
+                    <td>
+                        <#if OrderDto.getOrderStatusEnum().message!="已取消">
+                            <a href="/sell/sell/order/cancel?orderId=${OrderDto.orderId}">取消</a>
+                        </#if>
+                        </td>
                 </tr>
                 </#list>
                 </tbody>
