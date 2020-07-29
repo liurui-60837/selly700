@@ -53,7 +53,7 @@ public class SellOrderController {
             orderDto = orderService.findOne(orderId);
             orderService.cancel(orderDto);
         } catch (SellException e){
-            System.out.println("卖家订单查询不到");
+            System.out.println("卖家订单查询不到1");
             map.put("msg", e.getMessage());
             map.put("url","/sell/sell/order/list");
             return new ModelAndView("common/error",map);
@@ -69,13 +69,28 @@ public class SellOrderController {
         try {
             orderDto =  orderService.findOne(orderId);
         } catch (SellException e){
-            System.out.println("卖家订单查询不到");
+            System.out.println("卖家订单查询不到2");
             map.put("msg", e.getMessage());
             map.put("url","/sell/sell/order/list");
             return new ModelAndView("common/error",map);
         }
             map.put("orderDTO",orderDto);
             return  new ModelAndView("order/detail",map);
+    }
+    @GetMapping("/finish")
+    public ModelAndView finished(@RequestParam("orderId") String orderId,Map<String,Object> map){
+        try {
+            OrderDto orderDto = orderService.findOne(orderId);
+            orderService.finish(orderDto);
+        } catch (SellException e){
+            System.out.println("卖家订单查询不到3");
+            map.put("msg", e.getMessage());
+            map.put("url","/sell/sell/order/list");
+            return new ModelAndView("common/error",map);
+        }
+        map.put("msg",ResultEnum.SUCCESS_FUL_END);
+        map.put("url","/sell/sell/order/list");
+        return new ModelAndView("common/success");
     }
 
 }

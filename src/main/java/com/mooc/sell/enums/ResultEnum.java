@@ -25,6 +25,8 @@ public enum ResultEnum {
     ORDER_OWNER_ERROR(19,"该订单不属于当前用户"),
 
     WX_MP_ERROR(20,"微信公招账号错误"),
+
+    SUCCESS_FUL_END(21,"订单成功完结"),
     ;
     private  Integer code;
 
