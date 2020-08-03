@@ -1,23 +1,14 @@
-package com.mooc.sell.dataobject;
+package com.mooc.sell.form;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mooc.sell.Utls.EnumUtils;
-import com.mooc.sell.enums.ProductStatusEnum;
+import lombok.Data;
 
-import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.util.Date;
 
-/**
- * 商品
- */
-@Entity
+@Data
+public class ProductForm {
 
-public class ProductInfo {
-    private static final long serialVersionUID = 6399186181668983148L;
-
-    @Id
     private String productId;
 
     /** 名字. */
@@ -35,33 +26,8 @@ public class ProductInfo {
     /** 小图. */
     private String productIcon;
 
-    /** 状态, 0正常1下架. */
-   // private Integer productStatus = ProductStatusEnum.UP.getCode();
-    private  Integer productStatus;
-
-    public Integer getProductStatus() {
-        return productStatus;
-    }
-
-    public void setProductStatus(Integer productStatus) {
-        this.productStatus = productStatus;
-    }
-
     /** 类目编号. */
     private Integer categoryType;
-
-    private Date createTime;
-
-    private Date updateTime;
-
-    @JsonIgnore
-    public ProductStatusEnum getProductStatusEnum(){
-        return EnumUtils.getByCode(productStatus,ProductStatusEnum.class);
-    }
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
 
     public String getProductId() {
         return productId;
@@ -117,21 +83,5 @@ public class ProductInfo {
 
     public void setCategoryType(Integer categoryType) {
         this.categoryType = categoryType;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
     }
 }

@@ -22,7 +22,7 @@ import java.util.Map;
  * 卖家段订单
  */
 @Controller
-@RequestMapping("/sell/order")
+@RequestMapping("/seller/order")
 @Slf4j
 public class SellOrderController {
     @Autowired
@@ -55,11 +55,11 @@ public class SellOrderController {
         } catch (SellException e){
             System.out.println("卖家订单查询不到1");
             map.put("msg", e.getMessage());
-            map.put("url","/sell/sell/order/list");
+            map.put("url","/sell/seller/order/list");
             return new ModelAndView("common/error",map);
         }
         map.put("msg",ResultEnum.SUCCESS_FUL);
-        map.put("url","/sell/sell/order/list");
+        map.put("url","/sell/seller/order/list");
         return new ModelAndView("common/success");
     }
 
@@ -71,7 +71,7 @@ public class SellOrderController {
         } catch (SellException e){
             System.out.println("卖家订单查询不到2");
             map.put("msg", e.getMessage());
-            map.put("url","/sell/sell/order/list");
+            map.put("url","/sell/seller/order/list");
             return new ModelAndView("common/error",map);
         }
             map.put("orderDTO",orderDto);
@@ -85,11 +85,11 @@ public class SellOrderController {
         } catch (SellException e){
             System.out.println("卖家订单查询不到3");
             map.put("msg", e.getMessage());
-            map.put("url","/sell/sell/order/list");
+            map.put("url","/sell/seller/order/list");
             return new ModelAndView("common/error",map);
         }
         map.put("msg",ResultEnum.SUCCESS_FUL_END);
-        map.put("url","/sell/sell/order/list");
+        map.put("url","/sell/seller/order/list");
         return new ModelAndView("common/success");
     }
 

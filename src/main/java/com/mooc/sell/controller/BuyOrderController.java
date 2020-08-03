@@ -82,33 +82,5 @@ public class BuyOrderController {
         return ResultVOUtil.success();
     }
 
-    @PostMapping("/qqq")
-    public List<SOTPresentation> ttt(@RequestParam("openid") String openid){
-        System.out.println(openid);
-        SOTPresentation ss = new SOTPresentation();
-        ss.setCarCode("110N0");
-        ss.setDealerCode("caode");
-        ss.setDealerName("123");
-        Date d = new Date();
-        ss.setRepaymentDate("2020-01-01");
-        ss.setSaleDate("2020-01-01");
-        ss.setTranslateDate("2020-01-01");
-        List<SOTPresentation> CreditInfoList = new ArrayList<>();
-        CreditInfoList.add(ss);
-        return CreditInfoList;
-
-    }
-
-
-
-    public Twert sss( String openid){
-        System.out.println(openid);
-        Twert twert = new Twert();
-
-        twert.setCbuCar(true);
-        twert.setCkdCar(true);
-        return twert;
-
-    }
 
 }

@@ -1,9 +1,9 @@
 <html>
-
+<#include "../common/header.ftl">
 <body>
 <div id="wrapper" class="toggled">
 
-
+    <#include "../common/nav.ftl">
 
     <#--主要内容content-->
     <div id="page-content-wrapper">
