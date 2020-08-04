@@ -37,7 +37,7 @@ public class ProductInfo {
 
     /** 状态, 0正常1下架. */
    // private Integer productStatus = ProductStatusEnum.UP.getCode();
-    private  Integer productStatus;
+    private  Integer productStatus = ProductStatusEnum.UP.getCode();
 
     public Integer getProductStatus() {
         return productStatus;

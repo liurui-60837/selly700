@@ -1,5 +1,6 @@
 package com.mooc.sell.controller;
 
+import com.mooc.sell.Utls.KeyUtil;
 import com.mooc.sell.dataobject.ProductCategory;
 import com.mooc.sell.dataobject.ProductInfo;
 import com.mooc.sell.dto.OrderDto;
@@ -8,12 +9,12 @@ import com.mooc.sell.form.ProductForm;
 import com.mooc.sell.service.CategoryService;
 import com.mooc.sell.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -120,8 +121,13 @@ public class SellerProductController {
             map.put("url","/sell/seller/product/list");
             return  new ModelAndView("common/error",map);
         }
+        ProductInfo productInfo = new ProductInfo();
         try {
-            ProductInfo productInfo = productService.findOne(form.getProductId());
+            if(StringUtils.isNotBlank(form.getProductId())){
+                 productInfo = productService.findOne(form.getProductId());
+            }else {
+                form.setProductId(KeyUtil.getUniqueKey());
+            }
             BeanUtils.copyProperties(form,productInfo);
             productService.save(productInfo);
         }catch (SellException e){

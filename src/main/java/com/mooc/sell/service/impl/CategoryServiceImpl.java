@@ -34,6 +34,6 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public ProductCategory save(ProductCategory productCategory) {
-        return save(productCategory);
+        return respository.save(productCategory);
     }
 }

@@ -30,8 +30,8 @@ public class ProductCategoryRespositoryTest {
     @Test
     public void saveTest(){
         ProductCategory productCategory = new ProductCategory();
-        productCategory.setCategoryName("他sji");
-        productCategory.setCategoryType(1);
+        productCategory.setCategoryName("烤肉");
+        productCategory.setCategoryType(4);
         respository.save(productCategory);
     }
     @Test
